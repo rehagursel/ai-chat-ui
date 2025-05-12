@@ -1,54 +1,67 @@
-# React + TypeScript + Vite
+# AI Chat UI
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a simple React-based UI for a chat application. It features a basic login screen and a chat interface for sending messages and displaying responses.
 
-Currently, two official plugins are available:
+## Backend API
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This UI is intended to be used for testing the AI Chat backend API available at:
+`https://ai-chat-backend-git-main-rehagursels-projects.vercel.app`
 
-## Expanding the ESLint configuration
+## Project Setup
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+This project was bootstrapped with [Vite](https://vitejs.dev/).
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+### Prerequisites
+
+- Node.js (v18.x or later recommended)
+- npm or yarn
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/rehagursel/ai-chat-ui.git
+   ```
+2. Navigate to the project directory:
+   ```bash
+   cd ai-chat-ui
+   ```
+3. Install dependencies:
+   ```bash
+   npm install
+   # or
+   # yarn install
+   ```
+
+### Running the Application
+
+To start the development server, run:
+
+```bash
+npm run dev
+# or
+# yarn dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+This will typically start the application on `http://localhost:5173` (or another port if 5173 is in use).
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Key Features
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+- **Login Page**: A simple username/password login. (Currently, any non-empty username and password will allow login for testing purposes).
+- **Chat Page**: An interface to send messages and view responses. AI responses are currently simulated with a delay.
+
+## Technologies Used
+
+- React
+- TypeScript
+- Vite
+- React Router DOM for navigation
+
+## Available Scripts
+
+In the project directory, you can run:
+
+- `npm run dev`: Runs the app in development mode.
+- `npm run build`: Builds the app for production to the `dist` folder.
+- `npm run lint`: Lints the project files.
+- `npm run preview`: Serves the production build locally for preview.

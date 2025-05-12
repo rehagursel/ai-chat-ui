@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useAuth } from "../contexts/AuthContext";
 import { chat } from "../services/chat";
+import { CHARACTER_IDS } from "../constants/chat";
+import type { ChatMode } from "../constants/chat";
 import "../styles/main.scss";
 import "./Chat.scss";
 
@@ -14,7 +16,6 @@ interface Message {
 }
 
 interface ChatProps {
-    characterId: string;
     characterName: string;
 }
 
@@ -24,13 +25,16 @@ interface StreamData {
     content?: string;
 }
 
-const Chat: React.FC<ChatProps> = ({ characterId, characterName }) => {
+const Chat: React.FC<ChatProps> = ({ characterName }) => {
     const [messages, setMessages] = useState<Message[]>([]);
     const [newMessage, setNewMessage] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const [streamingMessage, setStreamingMessage] = useState("");
+    const [chatMode, setChatMode] = useState<ChatMode>("friendly");
     const messagesEndRef = useRef<HTMLDivElement>(null);
     const { userId, logout } = useAuth();
+
+    const characterId = CHARACTER_IDS[chatMode];
 
     useEffect(() => {
         if (characterId) {
@@ -107,7 +111,17 @@ const Chat: React.FC<ChatProps> = ({ characterId, characterName }) => {
     return (
         <div className="chat">
             <div className="chat__header">
-                <h2>{characterName}</h2>
+                <div className="chat__header-left">
+                    <h2>{chatMode.charAt(0).toUpperCase() + chatMode.slice(1) + ' ' + characterName}</h2>
+                    <select 
+                        value={chatMode} 
+                        onChange={(e) => setChatMode(e.target.value as ChatMode)}
+                        className="chat__mode-select"
+                    >
+                        <option value="friendly">Friendly</option>
+                        <option value="formal">Formal</option>
+                    </select>
+                </div>
                 <button onClick={logout} className="chat__logout-button">Logout</button>
             </div>
             

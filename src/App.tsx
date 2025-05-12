@@ -41,10 +41,7 @@ const App: React.FC = () => {
 
     return (
         <div className="app">
-            <Chat
-                characterId="68209ce7ff59fa7eb58871bc"
-                characterName="AI Assistant"
-            />
+            <Chat characterName="AI Assistant" />
         </div>
     );
 };
